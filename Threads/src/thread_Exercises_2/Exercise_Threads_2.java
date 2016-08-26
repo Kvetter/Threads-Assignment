@@ -18,9 +18,9 @@ public class Exercise_Threads_2 {
         Exercise_1 ex1 = new Exercise_1();
         
         ex1.createThreads();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         System.out.println(ex1.sum);
-        
+
         
     }
     

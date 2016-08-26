@@ -8,6 +8,9 @@ package thread_Exercises_1;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *
@@ -17,7 +20,7 @@ public class Exercise_4 {
 
     static class Tester {
 
-        static final int NUMBER_OF_TURNSTILES = 40;
+        static final int NUMBER_OF_TURNSTILES = 400;
         static Turnstile[] turnStiles = new Turnstile[NUMBER_OF_TURNSTILES];
 
         public static void main(String[] args) throws InterruptedException {
@@ -72,20 +75,26 @@ public class Exercise_4 {
     static class TurnstileCounter {
 
         static final long DELAY_VAL = 10000;
-        long count = 0;
+        // Made variables to AtomicInteger to make it thread safe without the use of
+        // synchronized keyword
+        AtomicInteger count = new AtomicInteger(0);
 
         public long getValue() {
-            return count;
+            return count.longValue();
         }
 
-        // Added keyword
-       synchronized public void incr() {
+        // Added keyword synchronized
+        private Lock lock = new ReentrantLock();
+
+        synchronized public void incr() {
 //   If the program initially does not fail, replace the count line with the lines below
-            long n = count;
+            lock.lock();
+            AtomicInteger n = count;
             //Spend some time to force preemtion
             for (long a = 0; a < DELAY_VAL; a++);
-            n = n + 1;
+            n.addAndGet(1);
             count = n;
+            lock.unlock();
 
             //count++;
         }

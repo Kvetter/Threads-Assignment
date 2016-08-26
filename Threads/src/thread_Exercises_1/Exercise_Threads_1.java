@@ -22,10 +22,10 @@ public class Exercise_Threads_1 {
         Exercise_1 ex1 = new Exercise_1();
         Exercise_2 ex2 = new Exercise_2();
         
-        ex1.Exercise1();
+        //ex1.Exercise1();
         // The first occurence of a uneven number happens after 10_000 most of the times
         // but the method is made atomic with the synchrnized keyword
-        //ex2.Exercise2();
+        ex2.Exercise2();
         
         
     }

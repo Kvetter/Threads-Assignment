@@ -43,6 +43,7 @@ public class Exercise_1 {
         } catch (InterruptedException ex) {
         }
 
+        // not Thread safe at all, but not part of the exercise :p
         task3.bool = false;
 
     }

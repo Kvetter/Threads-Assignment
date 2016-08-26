@@ -40,7 +40,7 @@ public class Exercise_2 {
         private int n = 0;
 
         
-        // synchronized key-wprd is added to make the method atomic
+        // synchronized key-word is added to make the method atomic
         synchronized public int next() {
             n++;
             n++;
